@@ -1,0 +1,3 @@
+# Flags for files edited directly inside ~/.config/nvim (e.g. scratch .cpp files).
+# All CP files under ~/cpvim use ~/.config/clangd/config.yaml instead.
+-std=c++20
