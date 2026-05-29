@@ -17,6 +17,8 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define pb emplace_back
 #define mp make_pair
+#define F first
+#define S second
 
 void solve()
 {
@@ -29,7 +31,7 @@ int main()
     cin >> t;
     while (t--)
     {
-        solve();
+       solve();
     }
     return 0;
 }

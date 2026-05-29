@@ -1,24 +1,30 @@
 class DSU {
-    vector<int> parent, rank;
+    vector<int> par, siz;
+    int conn;
 public:
-    DSU(int n) : parent(n), rank(n, 0) {
-        iota(parent.begin(), parent.end(), 0);
+    DSU(int n) : par(n), siz(n) {
+        iota(par.begin(), par.end(), 0);
+	for(int i = 0 ; i < n ; i++) {
+		siz[i] = 1;
+	}
+	conn = n;
     }
     
-    int find(int x) {
-        return parent[x] == x ? x : parent[x] = find(parent[x]);
+    int finds(int x) {
+        return par[x] == x ? x : par[x] = finds(par[x]);
     }
     
     bool unite(int x, int y) {
-        x = find(x), y = find(y);
+        x = finds(x), y = finds(y);
         if (x == y) return false;
-        if (rank[x] < rank[y]) swap(x, y);
-        parent[y] = x;
-        if (rank[x] == rank[y]) rank[x]++;
+	if(siz[y] > siz[x]) swap(x,y);
+	par[y] = x;
+	siz[x] += siz[y];
+	conn--;
         return true;
     }
     
     bool connected(int x, int y) {
-        return find(x) == find(y);
+        return finds(x) == finds(y);
     }
 };
