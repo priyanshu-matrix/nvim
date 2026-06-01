@@ -21,7 +21,7 @@ return {
             contests_dir = '~/cpvim/contests'
         }
 
-        -- Keymaps for competitest.nvim
+        -- Keymaps 
         local map = vim.keymap.set
         map('n', '<leader>cn', '<cmd>CompetiTest receive problem<cr>', {
             silent = true,

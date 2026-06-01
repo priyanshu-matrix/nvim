@@ -8,4 +8,5 @@ return {
 	require("plugins.treeSitter"),
 	require("plugins.mason"),
 	require("plugins.formatter"),
+	require("plugins.autocomp"),
 }

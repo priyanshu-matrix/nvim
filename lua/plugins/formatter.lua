@@ -6,11 +6,17 @@ return {
 			c          = { "clang_format" },
 			java       = { "clang_format" },
 			javascript = { "prettier" },
+			html 	   = { "prettier" },
+			css	   = { "prettier" },
+			rust 	   = { "rustfmt" },
 		},
 		formatters = {
 			clang_format = {
 				-- This appends the style flag directly to the command: clang-format --style="..."
-				prepend_args = { "--style={BasedOnStyle: LLVM, UseTab: Always, IndentWidth: 8, TabWidth: 8, BreakBeforeBraces: Linux}" },
+				prepend_args = { 
+					"--style={BasedOnStyle: LLVM, UseTab: Always, IndentWidth: 8, TabWidth: 8, BreakBeforeBraces: Linux}" 
+				},
+
 			},
 		},
 		format_on_save = {

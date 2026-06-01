@@ -7,6 +7,9 @@ vim.keymap.set("n","<leader>e", vim.cmd.Ex)
 -- For clearing highlight after search
 vim.keymap.set("n", "<Esc>", vim.cmd.noh)
 
+-- For opening terminal
+vim.keymap.set('n', "<C-\\>", vim.cmd.term)
+
 
 -- Basic Editor Config
 vim.opt.relativenumber = true;
