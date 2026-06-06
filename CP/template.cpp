@@ -1,37 +1,30 @@
-/*
- *
- * Author: priyanshu-codes
- *
-*/
+#include <iostream>
 
-
-#include <bits/stdc++.h>
-using namespace std;
-
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Author : priyanshu-codes
+ */
 #define ll long long
-#define fastio()                 \
-    ios::sync_with_stdio(false); \
-    cin.tie(0);                  \
-    cout.tie(0);
+#define fastio()                                                               \
+	std::ios::sync_with_stdio(false);                                      \
+	std::cin.tie(0);                                                       \
+	std::cout.tie(0);
 #define endl '\n'
 #define all(x) x.begin(), x.end()
-#define pb emplace_back
-#define mp make_pair
-#define F first
-#define S second
+/*-------------------------------------------------------------------------------------*/
 
 void solve()
 {
+	// Code
 }
 
 int main()
 {
-    fastio();
-    int t = 1;
-    cin >> t;
-    while (t--)
-    {
-       solve();
-    }
-    return 0;
+	fastio();
+	int t = 1;
+	std::cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
 }

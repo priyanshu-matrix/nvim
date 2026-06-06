@@ -4,7 +4,6 @@ return {
 		formatters_by_ft = {
 			cpp        = { "clang_format" },
 			c          = { "clang_format" },
-			java       = { "clang_format" },
 			javascript = { "prettier" },
 			html 	   = { "prettier" },
 			css	   = { "prettier" },

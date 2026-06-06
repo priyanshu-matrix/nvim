@@ -9,4 +9,5 @@ return {
 	require("plugins.mason"),
 	require("plugins.formatter"),
 	require("plugins.autocomp"),
+	require("plugins.lspconfig"),
 }
