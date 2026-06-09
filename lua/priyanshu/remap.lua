@@ -1,4 +1,3 @@
-
 vim.g.mapleader = " "
 
 -- For opening netrw
@@ -29,7 +28,7 @@ end, {
 
 -- 1. Optional: Adjust the hover delay (default is 4000ms / 4 seconds)
 -- 500ms is a popular sweet spot for responsiveness without lag
-vim.o.updatetime = 500
+vim.o.updatetime = 500 
 
 -- 2. Create an autocmd to trigger the float on hover
 vim.api.nvim_create_autocmd("CursorHold", {
@@ -48,3 +47,18 @@ vim.api.nvim_create_autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, opts)
   end,
 })
+
+-- Theme Manager
+local tm = require("priyanshu.theme_manager")
+
+vim.keymap.set("n", "<leader>tt", tm.toggle_transparency, {
+	desc = "Toggle transparency",
+})
+
+vim.keymap.set("n", "<leader>tn", function()
+	tm.set_theme("tokyonight")
+end, { desc = "Tokyonight" })
+
+vim.keymap.set("n", "<leader>tr", function()
+	tm.set_theme("rose-pine")
+end, { desc = "Rose Pine" })

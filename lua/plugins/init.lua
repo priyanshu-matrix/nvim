@@ -1,6 +1,5 @@
 return {
 	require("plugins.telescope"),
-	require("plugins.maintheme"),
 	require("plugins.compitest"),
 	require("plugins.matchBrace"),
 	require("plugins.commentapi"),
@@ -10,4 +9,7 @@ return {
 	require("plugins.formatter"),
 	require("plugins.autocomp"),
 	require("plugins.lspconfig"),
+	require("plugins.alpha"),
+	require("plugins.tokyonight"),
+	require("plugins.rosepine"),
 }

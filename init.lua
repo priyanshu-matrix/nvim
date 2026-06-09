@@ -1,4 +1,5 @@
 require("priyanshu")
+require("priyanshu.theme_manager").load()
 --testing 
 
 

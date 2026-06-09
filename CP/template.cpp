@@ -2,7 +2,7 @@
 
 /*-------------------------------------------------------------------------------------*/
 /**
- * Author : priyanshu-codes
+ * Author: priyanshu-codes
  */
 #define ll long long
 #define fastio()                                                               \
