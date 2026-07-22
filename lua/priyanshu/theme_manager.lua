@@ -1,4 +1,3 @@
-
 local M = {}
 
 local state_file = vim.fn.stdpath("data") .. "/theme_state"
@@ -9,6 +8,48 @@ local defaults = {
 }
 
 local state = vim.deepcopy(defaults)
+
+local transparent_groups = {
+	"Normal",
+	"NormalNC",
+	"NormalFloat",
+	"FloatBorder",
+	"FloatTitle",
+	"SignColumn",
+	"LineNr",
+	"CursorLineNr",
+	"EndOfBuffer",
+	"MsgArea",
+	"StatusLine",
+	"StatusLineNC",
+	"NvimTreeNormal",
+	"NvimTreeNormalNC",
+	"TelescopeNormal",
+	"TelescopeBorder",
+	"TelescopePromptBorder",
+	"TelescopeResultsBorder",
+	"TelescopePreviewBorder",
+}
+
+function M.apply_transparency()
+	if not state.transparent then
+		return
+	end
+
+	for _, group in ipairs(transparent_groups) do
+		vim.api.nvim_set_hl(0, group, { bg = "none" })
+	end
+end
+
+-- Auto-apply transparency whenever any colorscheme is loaded (including via Themery)
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "*",
+	callback = function()
+		if state.transparent then
+			M.apply_transparency()
+		end
+	end,
+})
 
 function M.save()
 	local f = io.open(state_file, "w")
@@ -38,17 +79,12 @@ function M.load()
 end
 
 function M.apply()
-	if state.colorscheme == "tokyonight" then
-		require("tokyonight").setup({
-			transparent = state.transparent,
-		})
-	elseif state.colorscheme == "rose-pine" then
-		require("rose-pine").setup({
-			disable_background = state.transparent,
-		})
+	if state.colorscheme then
+		pcall(vim.cmd.colorscheme, state.colorscheme)
 	end
-
-	vim.cmd.colorscheme(state.colorscheme)
+	if state.transparent then
+		M.apply_transparency()
+	end
 end
 
 function M.set_theme(theme)
@@ -59,17 +95,25 @@ end
 
 function M.toggle_transparency()
 	state.transparent = not state.transparent
-	M.apply()
+	if state.transparent then
+		M.apply_transparency()
+	else
+		local current = vim.g.colors_name or state.colorscheme
+		if current then
+			pcall(vim.cmd.colorscheme, current)
+		end
+	end
 	M.save()
 
-	print(
-		"Transparency "
-			.. (state.transparent and "enabled" or "disabled")
-	)
+	print("Transparency " .. (state.transparent and "enabled" or "disabled"))
 end
 
 function M.current_theme()
 	return state.colorscheme
+end
+
+function M.is_transparent()
+	return state.transparent
 end
 
 return M

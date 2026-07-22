@@ -10,6 +10,5 @@ return {
 	require("plugins.autocomp"),
 	require("plugins.lspconfig"),
 	require("plugins.alpha"),
-	require("plugins.tokyonight"),
-	require("plugins.rosepine"),
+	require("plugins.themes"),
 }

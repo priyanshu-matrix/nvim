@@ -20,6 +20,7 @@ return {
 				-- Pointing explicitly to your custom identifier
 				cpp = { "clang_format" },
 				c   = { "clang_format" },
+				markdown = {"prettier"},
 			},
 			formatters = {
 				-- Defining the custom "clang_format" configuration explicitly
@@ -27,9 +28,8 @@ return {
 					-- Tells conform the exact CLI command binary name to execute
 					command = "clang-format",
 					-- Your custom style flags appended directly to the command
-					prepend_args = {
-						"--style={BasedOnStyle: LLVM, UseTab: Always, IndentWidth: 8, TabWidth: 8, BreakBeforeBraces: Linux}"
-					},
+					
+				prepend_args = { "--style={BasedOnStyle: LLVM, UseTab: Always, IndentWidth: 8, TabWidth: 8, BreakBeforeBraces: Linux}" },
 				},
 			},
 			format_on_save = {
