@@ -42,9 +42,15 @@ function M.apply_transparency()
 end
 
 -- Auto-apply transparency whenever any colorscheme is loaded (including via Themery)
+-- and automatically persist the selected colorscheme.
 vim.api.nvim_create_autocmd("ColorScheme", {
 	pattern = "*",
-	callback = function()
+	callback = function(args)
+		local current = vim.g.colors_name or args.match
+		if current and current ~= "" and current ~= state.colorscheme then
+			state.colorscheme = current
+			M.save()
+		end
 		if state.transparent then
 			M.apply_transparency()
 		end
@@ -72,6 +78,18 @@ function M.load()
 
 		if ok and decoded then
 			state = vim.tbl_extend("force", defaults, decoded)
+		end
+	else
+		-- If theme_state doesn't exist yet, sync with Themery state file if available
+		local themery_state_file = vim.fn.stdpath("data") .. "/themery/state.json"
+		local tf = io.open(themery_state_file, "r")
+		if tf then
+			local tcontent = tf:read("*a")
+			tf:close()
+			local tok, tdecoded = pcall(vim.json.decode, tcontent)
+			if tok and tdecoded and tdecoded.colorscheme then
+				state.colorscheme = tdecoded.colorscheme
+			end
 		end
 	end
 

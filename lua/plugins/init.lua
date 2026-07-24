@@ -11,4 +11,5 @@ return {
 	require("plugins.lspconfig"),
 	require("plugins.alpha"),
 	require("plugins.themes"),
+	require("plugins.nvim-tree"),
 }

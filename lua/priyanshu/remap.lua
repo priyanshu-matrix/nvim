@@ -1,8 +1,21 @@
 vim.g.mapleader = " "
 
--- For opening netrw
-vim.keymap.set("n","<leader>e", vim.cmd.Ex)
+-- For toggling side file viewer (nvim-tree)
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree side file viewer" })
 
+-- resize window
+vim.keymap.set(
+  'n',
+  '<leader><Up>',
+  '<cmd>vertical resize +5<CR>',
+  { desc = 'Increase window width' }
+)
+vim.keymap.set(
+  'n',
+  '<leader><Down>',
+  '<cmd>vertical resize -5<CR>',
+  { desc = 'Decrease window width' }
+)
 -- For clearing highlight after search
 vim.keymap.set("n", "<Esc>", vim.cmd.noh)
 
@@ -41,7 +54,7 @@ local function toggle_terminal()
     if vim.bo[term_buf].buftype ~= "terminal" then
       vim.fn.termopen(vim.o.shell)
     end
-    
+
     -- Automatically enter insert mode so you can type immediately
     vim.cmd("startinsert")
   end
@@ -72,13 +85,13 @@ end, {
 
 -- 1. Optional: Adjust the hover delay (default is 4000ms / 4 seconds)
 -- 500ms is a popular sweet spot for responsiveness without lag
-vim.o.updatetime = 500 
+vim.o.updatetime = 500
 
 -- 2. Create an autocmd to trigger the float on hover
 vim.api.nvim_create_autocmd("CursorHold", {
   buffer = bufnr, -- Keeps it isolated to the current buffer
   callback = function()
-    -- These options prevent the window from stealing focus 
+    -- These options prevent the window from stealing focus
     -- and keep it clean so you can just move your cursor away to close it
     local opts = {
       focusable = false,
@@ -108,4 +121,8 @@ vim.keymap.set("n", "<leader>tr", function()
 end, { desc = "Rose Pine" })
 
 vim.keymap.set("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Open Themery GUI" })
+
+-- Open Alpha Dashboard (Home)
+vim.keymap.set("n", "<leader>h", "<cmd>Alpha<CR>", { desc = "Open Alpha home dashboard" })
+
 

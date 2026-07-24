@@ -19,12 +19,51 @@ return {
 
 	-- Jellybeans
 	{
-		"metalelf0/jellybeans-nvim",
+		"wtfox/jellybeans.nvim",
 		lazy = false,
 		priority = 1000,
-		dependencies = {
-			"rktjmp/lush.nvim",
+		opts = {
 		},
+	},
+
+	-- CyberDream
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+
+	--LaserWave
+	{
+		"lettertwo/laserwave.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+
+	--Cyberpunk
+	{
+		"hyperb1iss/silkcircuit",
+		lazy = false,
+		priority = 1500,
+		opts = {
+			variant = "glow",       -- "neon" | "vibrant" | "soft" | "glow" | "dawn"
+
+			styles = {
+				comments = { italic = false},
+				keywords = { bold = true },
+				functions = { bold = true, italic = true },
+				variables = {},
+				strings = { italic = true },
+			},
+
+		},
+	},
+
+	--Github 
+	{
+		'projekt0n/github-nvim-theme',
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
 	},
 
 	-- =========================================================================
@@ -36,10 +75,27 @@ return {
 		config = function()
 			require("themery").setup({
 				themes = {
-					"tokyonight",
-					"rose-pine",
-					"jellybeans-nvim",
-				},
+					"tokyonight-night",
+					"tokyonight-storm",
+					"tokyonight-moon",
+					"tokyonight-day",
+					"rose-pine-main",
+					"rose-pine-moon",
+					"rose-pine-dawn",
+					"github_dark_default",
+					"github_dark_dimmed",
+					"github_light",
+					"jellybeans",
+					"jellybeans-muted",
+					"jellybeans-mono",
+					"jellybeans-hc",
+					"jellybeans-mono-light",
+					"jellybeans-muted-light",
+					"jellybeans-light",
+					"cyberdream",
+					"laserwave",
+					"silkcircuit",
+				},				
 				livePreview = true,
 			})
 		end,
