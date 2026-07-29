@@ -1,6 +1,5 @@
 return {
 	require("plugins.telescope"),
-	require("plugins.maintheme"),
 	require("plugins.compitest"),
 	require("plugins.matchBrace"),
 	require("plugins.commentapi"),
@@ -9,4 +8,8 @@ return {
 	require("plugins.mason"),
 	require("plugins.formatter"),
 	require("plugins.autocomp"),
+	require("plugins.lspconfig"),
+	require("plugins.alpha"),
+	require("plugins.themes"),
+	require("plugins.nvim-tree"),
 }

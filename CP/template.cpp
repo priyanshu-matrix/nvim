@@ -1,37 +1,23 @@
-/*
- *
- * Author: priyanshu-codes
- *
-*/
-
-
-#include <bits/stdc++.h>
+#include <iostream>
+#define int long long
 using namespace std;
 
-#define ll long long
-#define fastio()                 \
-    ios::sync_with_stdio(false); \
-    cin.tie(0);                  \
-    cout.tie(0);
-#define endl '\n'
-#define all(x) x.begin(), x.end()
-#define pb emplace_back
-#define mp make_pair
-#define F first
-#define S second
-
-void solve()
+void solve_testcases()
 {
+	// sol don't use endl
 }
 
-int main()
+signed main()
 {
-    fastio();
-    int t = 1;
-    cin >> t;
-    while (t--)
-    {
-       solve();
-    }
-    return 0;
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+
+	int T = 1;
+	cin >> T;
+	for (int i = 0; i < T; i++) {
+		// cout << "#test " << i+1 << '\n';
+		solve_testcases();
+	}
+	return 0;
 }

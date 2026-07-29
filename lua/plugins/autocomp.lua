@@ -3,24 +3,23 @@ return {
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			local cmp = require("cmp")
 
 			cmp.setup({
-				-- Completion sources
 				sources = {
+					{ name = "nvim_lsp" },
 					{ name = "buffer" },
 				},
 
 				mapping = cmp.mapping.preset.insert({
 					["<C-Space>"] = cmp.mapping.complete(),
 
-					-- 3. CRITICAL: Crucial for auto-imports!
-					-- Behavior must be set to 'replace' or 'insert' to apply LSP textEdits (like include insertions)
-					["<CR>"] = cmp.mapping.confirm({ 
-						behavior = cmp.ConfirmBehavior.Replace, 
-						select = true, 
+					["<CR>"] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
 					}),
 
 					["<Tab>"] = cmp.mapping(function(fallback)

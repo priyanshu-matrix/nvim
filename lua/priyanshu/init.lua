@@ -1,4 +1,3 @@
 require("priyanshu.lazy")
 require("priyanshu.remap")
-
-print("Priyanshu's Macbook Air nvim-1.0")
+require("priyanshu.theme_manager").load()
