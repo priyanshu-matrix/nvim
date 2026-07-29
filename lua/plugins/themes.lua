@@ -40,25 +40,6 @@ return {
 		priority = 1000,
 	},
 
-	--Cyberpunk
-	{
-		"hyperb1iss/silkcircuit",
-		lazy = false,
-		priority = 1500,
-		opts = {
-			variant = "glow",       -- "neon" | "vibrant" | "soft" | "glow" | "dawn"
-
-			styles = {
-				comments = { italic = false},
-				keywords = { bold = true },
-				functions = { bold = true, italic = true },
-				variables = {},
-				strings = { italic = true },
-			},
-
-		},
-	},
-
 	--Github 
 	{
 		'projekt0n/github-nvim-theme',
@@ -94,7 +75,6 @@ return {
 					"jellybeans-light",
 					"cyberdream",
 					"laserwave",
-					"silkcircuit",
 				},				
 				livePreview = true,
 			})

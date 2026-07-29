@@ -123,6 +123,6 @@ end, { desc = "Rose Pine" })
 vim.keymap.set("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Open Themery GUI" })
 
 -- Open Alpha Dashboard (Home)
-vim.keymap.set("n", "<leader>h", "<cmd>Alpha<CR>", { desc = "Open Alpha home dashboard" })
+vim.keymap.set("n", "<leader>h", "<cmd>bd | Alpha<CR>", { desc = "Close buffer and open Alpha dashboard" })
 
 
