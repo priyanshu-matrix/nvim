@@ -12,16 +12,16 @@ local state = vim.deepcopy(defaults)
 local transparent_groups = {
 	"Normal",
 	"NormalNC",
-	"NormalFloat",
+	-- "NormalFloat",
 	"FloatBorder",
 	"FloatTitle",
-	"SignColumn",
-	"LineNr",
-	"CursorLineNr",
-	"EndOfBuffer",
-	"MsgArea",
-	"StatusLine",
-	"StatusLineNC",
+	-- "SignColumn",
+	-- "LineNr",
+	-- "CursorLineNr",
+	-- "EndOfBuffer",
+	-- "MsgArea",
+	-- "StatusLine",
+	-- "StatusLineNC",
 	"NvimTreeNormal",
 	"NvimTreeNormalNC",
 	"TelescopeNormal",
@@ -31,15 +31,31 @@ local transparent_groups = {
 	"TelescopePreviewBorder",
 }
 
+-- function M.apply_transparency()
+-- 	if not state.transparent then
+-- 		return
+-- 	end
+
+-- 	for _, group in ipairs(transparent_groups) do
+-- 		vim.api.nvim_set_hl(0, group, { bg = "none" })
+-- 	end
+-- end
+
 function M.apply_transparency()
 	if not state.transparent then
 		return
 	end
 
+	-- Clear background for standard groups
 	for _, group in ipairs(transparent_groups) do
 		vim.api.nvim_set_hl(0, group, { bg = "none" })
 	end
+
+	-- Enable 10% blend (90% opacity) on floating windows
+	vim.opt.winblend = 0
+	vim.opt.pumblend = 0
 end
+
 
 -- Auto-apply transparency whenever any colorscheme is loaded (including via Themery)
 -- and automatically persist the selected colorscheme.

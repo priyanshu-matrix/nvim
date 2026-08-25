@@ -30,9 +30,10 @@ return {
 
     -- Set footer
     local stats = require("lazy").stats()
-    dashboard.section.footer.val = "⚡  Neovim loaded " .. stats.count .. " plugins in " .. stats.startuptime .. "ms"
+    dashboard.section.footer.val = "Neovim loaded " .. stats.count .. " plugins in " .. stats.startuptime .. "ms"
 
     -- Send config to alpha
     alpha.setup(dashboard.opts)
   end,
 }
+

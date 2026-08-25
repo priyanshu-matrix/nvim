@@ -7,7 +7,7 @@ return {
             compile_command = {
                 cpp = {
                     exec = 'g++-15',
-                    args = {'$(FNAME)', '-o', '$(FNOEXT)'}
+                    args = {'$(FNAME)','-o', '$(FNOEXT)'}
                 }
             },
             run_command = {
@@ -31,7 +31,7 @@ return {
             silent = true,
             desc = 'CompetiTest: Run tests'
         })
-        map('n', '<leader>cd', '<cmd>CompetiTest delete_testcase<cr>', {
+        map('n', '<leader>cx', '<cmd>CompetiTest delete_testcase<cr>', {
             silent = true,
             desc = 'CompetiTest: Run tests'
         })
@@ -42,6 +42,11 @@ return {
         map('n', '<leader>ct', '<cmd>CompetiTest add_testcase<cr>', {
             silent = true,
             desc = 'CompetiTest: Add testcase'
+        })
+
+	map('n', '<leader>cd', '<cmd>botright split | resize 12 | terminal clang++ -g "%" -o "%<" && "./%<"<cr>', {
+            silent = true,
+            desc = 'Compile & Run with clang++ (-g)'
         })
     end
 }

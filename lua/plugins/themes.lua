@@ -74,7 +74,12 @@ return {
 					"jellybeans-muted-light",
 					"jellybeans-light",
 					"cyberdream",
+					"catppuccin",
 					"laserwave",
+					"elflord",
+					"blue",
+					"delek",
+					"evening",
 				},				
 				livePreview = true,
 			})
