@@ -42,18 +42,19 @@ local transparent_groups = {
 -- end
 
 function M.apply_transparency()
-	if not state.transparent then
-		return
-	end
+    if not state.transparent then
+        return
+    end
 
-	-- Clear background for standard groups
-	for _, group in ipairs(transparent_groups) do
-		vim.api.nvim_set_hl(0, group, { bg = "none" })
-	end
+    for _, group in ipairs(transparent_groups) do
+        local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+        hl.bg = "none"
+        hl.ctermbg = "none"
+        vim.api.nvim_set_hl(0, group, hl)
+    end
 
-	-- Enable 10% blend (90% opacity) on floating windows
-	vim.opt.winblend = 0
-	vim.opt.pumblend = 0
+    vim.opt.winblend = 0
+    vim.opt.pumblend = 0
 end
 
 
