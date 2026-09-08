@@ -1,8 +1,4 @@
 return {
-	-- =========================================================================
-	-- INSTALLED THEMES
-	-- =========================================================================
-
 	-- Tokyo Night
 	{
 		"folke/tokyonight.nvim",
@@ -22,8 +18,6 @@ return {
 		"wtfox/jellybeans.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-		},
 	},
 
 	-- CyberDream
@@ -33,23 +27,28 @@ return {
 		priority = 1000,
 	},
 
-	--LaserWave
+	--Github 
 	{
-		"lettertwo/laserwave.nvim",
+		'projekt0n/github-nvim-theme',
 		lazy = false,
 		priority = 1000,
 	},
 
-	--Github 
+	--Monchrome
 	{
-		'projekt0n/github-nvim-theme',
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
+		"kdheepak/monochrome.nvim",
+		lazy = false,
+		priority = 1000,
 	},
 
-	-- =========================================================================
-	-- THEMERY GUI Theme Switcher
-	-- =========================================================================
+	--Gruvbox
+	{
+		"ellisonleao/gruvbox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = true,
+	},
+
 	{
 		"zaldih/themery.nvim",
 		lazy = false,
@@ -66,15 +65,16 @@ return {
 					"github_dark_default",
 					"github_dark_dimmed",
 					"github_light",
-					"jellybeans",
 					"jellybeans-muted",
 					"jellybeans-mono",
 					"jellybeans-hc",
 					"jellybeans-mono-light",
 					"jellybeans-muted-light",
 					"jellybeans-light",
+					"gruvbox",
 					"cyberdream",
-					"laserwave",
+					"catppuccin",
+					"monochrome"
 				},				
 				livePreview = true,
 			})

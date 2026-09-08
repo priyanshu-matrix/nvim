@@ -1,49 +1,53 @@
--- Perfect Comment execution
-
 return {
-	"numToStr/Comment.nvim",
-	event = "BufReadPost",
-	config = function()
-		local U = require("Comment.utils")
+    "numToStr/Comment.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+        -- Queries Treesitter to dynamically choose comment syntax anywhere in a file
+        "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    config = function()
+        -- Setup Treesitter commentstring integration
+        local ts_cs = require("ts_context_commentstring.integrations.comment_nvim")
+        require("ts_context_commentstring").setup({
+            enable_autocmd = false,
+        })
 
-		require("Comment").setup({
-			padding  = true,
-			sticky   = true,
-			ignore   = "^$",
+        -- Custom filetype mappings (fallback for extra languages or custom block syntax)
+        local ft = require("Comment.ft")
+        ft.set("c", { "//%s", "/*%s*/" })
+        ft.set("cpp", { "//%s", "/*%s*/" })
+        ft.set("go", { "//%s", "/*%s*/" })
+        ft.set("rust", { "//%s", "/*%s*/" })
+        ft.set("cuda", { "//%s", "/*%s*/" })
 
-			toggler  = {
-				line  = "gcc",
-				block = "gcc",
-			},
+        require("Comment").setup({
+            padding = true,
+            sticky = true,
+            ignore = "^$",
 
-			opleader = {
-				line  = "gc",
-				block = "gB",
-			},
+            toggler = {
+                line = "gcc",
+                block = "gbc", -- Fixed duplicate keymap (was "gcc")
+            },
 
-			extra    = {
-				above = "gcO",
-				below = "gco",
-				eol   = "gcA",
-			},
+            opleader = {
+                line = "gc",
+                block = "gb",
+            },
 
-			mappings = {
-				basic = true,
-				extra = true,
-			},
+            extra = {
+                above = "gcO",
+                below = "gco",
+                eol = "gcA",
+            },
 
-			pre_hook = function(ctx)
-				local ft = vim.bo.filetype
+            mappings = {
+                basic = true,
+                extra = true,
+            },
 
-				-- fix block comments for C / C++
-				if vim.tbl_contains({ "c", "cpp", "go" }, ft) then
-					if ctx.ctype == U.ctype.blockwise then
-						return "/*%s*/"
-					else
-						return "//%s"
-					end
-				end
-			end,
-		})
-	end,
+            -- Automatically detects the exact language at cursor using Treesitter
+            pre_hook = ts_cs.create_pre_hook(),
+        })
+    end,
 }
