@@ -21,6 +21,10 @@ return {
 				cpp = { "clang_format" },
 				c   = { "clang_format" },
 				markdown = {"prettier"},
+				lua = { "stylua" },
+				python = { "isort", "black" },
+				rust = { "rustfmt", lsp_format = "fallback" },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
 			formatters = {
 				-- Defining the custom "clang_format" configuration explicitly
