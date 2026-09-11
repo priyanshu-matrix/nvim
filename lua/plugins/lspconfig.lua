@@ -8,7 +8,7 @@ return {
 	config = function()
 		-- 1. Capabilities (Applies to all servers natively via wildcard)
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		
+
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
@@ -22,11 +22,16 @@ return {
 		-- 3. Define custom configurations for specific servers FIRST
 		vim.lsp.config("clangd", {
 			cmd = {
-				"clangd",
+				-- Force Neovim to use Mason's clangd instead of Apple's
+				vim.fn.stdpath("data") .. "/mason/bin/clangd",
 				"--background-index",
-				"--query-driver=/opt/homebrew/bin/g++,/opt/homebrew/bin/g++-*,/usr/bin/g++,/opt/homebrew/bin/gcc,/opt/homebrew/bin/gcc-*",
+				-- Use exact versioned paths; clangd does NOT expand globs like g++-* on macOS
+				-- This lets clangd discover GCC's include dirs (including bits/stdc++.h)
+				"--query-driver=/opt/homebrew/bin/g++-15,/opt/homebrew/bin/g++,/opt/homebrew/bin/gcc-15,/opt/homebrew/bin/gcc",
+				"--header-insertion=never",
+				"--clang-tidy=false",
 			},
-			filetypes = {  "c", "cpp", "objc", "objcpp" },
+			filetypes = { "c", "cpp", "objc", "objcpp" },
 		})
 
 		-- Sourcekit (Non-Mason, system installed)
@@ -37,10 +42,10 @@ return {
 		})
 		vim.lsp.enable("sourcekit")
 
-		-- 4. Automatically enable all Mason-installed servers 
+		-- 4. Automatically enable all Mason-installed servers
 		-- This safely replaces the broken setup_handlers
 		local installed_servers = require("mason-lspconfig").get_installed_servers()
-		
+
 		for _, server in ipairs(installed_servers) do
 			vim.lsp.enable(server)
 		end
