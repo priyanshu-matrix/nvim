@@ -33,8 +33,6 @@ return {
 		---@type boolean
 		logging = true,
 
-		injector = {}, ---@type table<lc.lang, lc.inject>
-
 		cache = {
 			update_interval = 60 * 60 * 24 * 7, ---@type integer 7 days
 		},
@@ -68,7 +66,7 @@ return {
 		description = {
 			position = "left", ---@type lc.position
 
-			width = "40%", ---@type lc.size
+			width = "50%", ---@type lc.size
 
 			show_stats = true, ---@type boolean
 		},
@@ -109,15 +107,7 @@ return {
 				imports = function()
 					-- return a different list to omit default imports
 					return {
-						"#include <iostream>",
-						"#include <vector>",
-						"#include <set>",
-						"#include <map>",
-						"#include <climits>",
-						"#include <queue>",
-						"#include <stack>",
-						"#include <algorithm>",
-						"#include <utility>",
+						"#include <bits/stdc++.h>",
 						"using namespace std;",
 					}
 				end,
