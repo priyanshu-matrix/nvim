@@ -17,7 +17,6 @@ return {
 		cmd = { "ConformInfo" },
 		opts = {
 			formatters_by_ft = {
-				-- Pointing explicitly to your custom identifier
 				cpp = { "clang_format" },
 				c = { "clang_format" },
 				markdown = { "prettier" },
@@ -27,15 +26,25 @@ return {
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
 			formatters = {
-				-- Defining the custom "clang_format" configuration explicitly
 				clang_format = {
-					-- Tells conform the exact CLI command binary name to execute
 					command = "clang-format",
-					-- Your custom style flags appended directly to the command
+					prepend_args = function(self, ctx)
+						-- Check if a local .clang-format or _clang-format file exists up the directory tree
+						local config_file = vim.fs.find({ ".clang-format", "_clang-format" }, {
+							upward = true,
+							path = ctx.filename,
+						})[1]
 
-					prepend_args = {
-						"--style={BasedOnStyle: LLVM, UseTab: Always, IndentWidth: 8, TabWidth: 8, BreakBeforeBraces: Linux}",
-					},
+						-- If config file is found, use it directly without injecting --style
+						if config_file then
+							return {}
+						end
+
+						-- Fallback inline style when no local config exists (Linux kernel style)
+						return {
+							"--style={BasedOnStyle: LLVM, UseTab: Always, IndentWidth: 8, TabWidth: 8, BreakBeforeBraces: Linux}",
+						}
+					end,
 				},
 			},
 			format_on_save = {
@@ -46,14 +55,17 @@ return {
 	},
 }
 
---[[ On line-10 we can put this and change the style
+--[[ Alternative Fallback Styles (replace inside prepend_args return block):
 
-The Google Style : prepend_args = { "--style={BasedOnStyle: Google, IndentWidth: 8}" },
+Google Style:
+return { "--style={BasedOnStyle: Google, IndentWidth: 8}" }
 
-The linux style : prepend_args = { "--style={BasedOnStyle: LLVM, UseTab: Always, IndentWidth: 8, TabWidth: 8, BreakBeforeBraces: Linux}" },
+Microsoft Style:
+return { "--style={BasedOnStyle: Microsoft, IndentWidth: 4, BreakBeforeBraces: Allman}" }
 
-Microsoft style : prepend_args = { "--style={BasedOnStyle: Microsoft, IndentWidth: 4, BreakBeforeBraces: Allman}" },
+Strict LLVM:
+return { "--style={BasedOnStyle: LLVM, IndentWidth: 4, PointerAlignment: Left}" }
 
-Strict LLVM : prepend_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 4, PointerAlignment: Left}" },
-
-Chromium : prepend_args = { "--style={BasedOnStyle: Chromium, IndentWidth: 4, AllowShortBlocksOnASingleLine: Always, AllowShortLoopsOnASingleLine: true}" }, ]]
+Chromium:
+return { "--style={BasedOnStyle: Chromium, IndentWidth: 4, AllowShortBlocksOnASingleLine: Always, AllowShortLoopsOnASingleLine: true}" }
+]]
