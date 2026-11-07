@@ -16,6 +16,7 @@ return {
 	require("plugins.debugger"),
 	require("plugins.nvim-tree"),
 	require("plugins.leetcode"),
+	require("plugins.bufferline"),
 	vim.tbl_extend("force", require("plugins.smearcurs"), {
 		keys = {
 			{
