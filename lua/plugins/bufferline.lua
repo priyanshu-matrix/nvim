@@ -55,7 +55,7 @@ return {
 				max_name_length = 18,
 				max_prefix_length = 15,
 				truncate_names = true,
-				tab_size = 20,
+				tab_size = 16,
 
 				-- LSP diagnostics inline on tabs
 				diagnostics = "nvim_lsp",
@@ -89,7 +89,7 @@ return {
 					},
 				},
 
-				color_icons = true,
+				color_icons = false,
 				show_buffer_icons = true,
 				show_buffer_close_icons = true,
 				show_close_icon = true,
@@ -98,7 +98,7 @@ return {
 				persist_buffer_sort = true,
 				move_wraps_at_ends = false,
 
-				separator_style = "slant", -- slant | slope | thin | thick
+				separator_style = "thin", -- slant | slope | thin | thick
 				enforce_regular_tabs = false,
 				always_show_bufferline = true,
 
@@ -108,7 +108,7 @@ return {
 
 			highlights = {
 				fill = { bg = "NONE" },
-				background = { italic = true },
+				background = { italic = false },
 				buffer_selected = { bold = true, italic = false },
 				numbers_selected = { bold = true },
 				diagnostic_selected = { bold = true },
